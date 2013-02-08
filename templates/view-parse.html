@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="hero-unit">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4">
+                    <b>View Parse Submission</b>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-compact">
+            <tbody>
+                <tr>
+                    <td>Image Name</td>
+                    <td>{{ parsed.image.name }}</td>
+                </tr>
+                <tr>
+                    <td>User</td>
+                    <td>{{ parsed.user }}</td>
+                </tr>
+                <tr>
+                    <td>Software</td>
+                    <td>{{ parsed.software }}</td>
+                </tr>
+                <tr>
+                    <td>Parse Type</td>
+                    <td>{{ parsed.parse_type }}</td>
+                </tr>                
+                <tr>
+                    <td>Score</td>
+                    <td>{{ parsed.score }}%</td>
+                </tr>                
+                <tr>
+                    <td>Text</td>
+                    <td>{{ parsed.text }}</td>
+                </tr>                
+                <tr>
+                    <td>Result</td>
+                    <td>{{ parsed.result }}</td>
+                </tr>                               
+            </tbody>
+        </table>      
+    </div>
+{% endblock %}
+
+{% block scriptblock %}
+{% endblock %}

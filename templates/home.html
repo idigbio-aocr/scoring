@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="hero-unit">
+        <h3>Home Page</h3>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <b>Data Sets</b>
+                </div>
+            </div>
+        </div>                        
+        <table class="table table-striped table-bordered table-compact">
+            <thead>
+                <tr>
+                    <th>Dataset<br> Name</th>
+                    <th>Image Name</th>
+                    <th>UUID</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody>                
+                {% for dataset in datasets %}
+                    {% for image in dataset.image_set.all %}
+                        <tr>
+                            <td>                
+                                {{ dataset.name }}
+                            </td>
+                            <td>                
+                                {{ image.name }}
+                            </td>                    
+                            <td>                
+                                {{ image.uuid }}
+                            </td>                                    
+                            <td>
+                                <a href="{% url scoring.views.submit_ocr image_name=image.uuid %}">Submit OCR</a><br>
+                                <a href="{% url scoring.views.submit_silver_parse image_name=image.uuid %}">Submit Silver Parse</a><br>
+                                <a href="{% url scoring.views.submit_gold_parse image_name=image.uuid %}">Submit Gold Parse</a>
+                            </td>                                    
+                        </tr>                        
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>        
+      </div>
+{% endblock %}
+
+{% block scriptblock %}
+{% endblock %}

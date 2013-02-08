@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="hero-unit">
+        <h3>Image List</h3>                      
+        <table class="table table-striped table-bordered table-compact">
+            <thead>
+                <tr>
+                    <th>Dataset Name</th>
+                    <th>Image Name</th>
+                    <th>UUID</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody>                
+                {% for p in parsed %}
+                        <tr>
+                            <td>                
+                                {{ p.name }}
+                            </td>
+                            <td>                
+                                {{ p.score }}
+                            </td>                    
+                            <td>                
+                                {{ p.image.name }}
+                            </td>                                    
+                            <td>                            
+                            </td>                                    
+                        </tr>                        
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Image List</h3>                      
+        <table class="table table-striped table-bordered table-compact">
+            <thead>
+                <tr>
+                    <th>Dataset Name</th>
+                    <th>Image Name</th>
+                    <th>UUID</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody>                
+                {% for o in ocr %}                    
+                        <tr>
+                            <td>                
+                                {{ o.name }}
+                            </td>
+                            <td>                
+                                {{ o.score }}
+                            </td>                    
+                            <td>                
+                                {{ o.image.name }}
+                            </td>                                        
+                            <td>                               
+                            </td>                                    
+                        </tr>                        
+                {% endfor %}
+            </tbody>
+        </table>         
+      </div>
+{% endblock %}
+
+{% block scriptblock %}
+{% endblock %}

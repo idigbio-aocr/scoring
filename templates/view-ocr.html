@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="hero-unit">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4">
+                    <b>View OCR Submission</b>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-compact">
+            <tbody>
+                <tr>
+                    <td>Image Name</td>
+                    <td>{{ ocr.image.name }}</td>
+                </tr>
+                <tr>
+                    <td>User</td>
+                    <td>{{ ocr.user }}</td>
+                </tr>
+                <tr>
+                    <td>Software</td>
+                    <td>{{ ocr.software }}</td>
+                </tr>
+                <tr>
+                    <td>Score</td>
+                    <td>{{ ocr.score }}%</td>
+                </tr>                
+                <tr>
+                    <td>Text</td>
+                    <td>{{ ocr.text }}</td>
+                </tr>                
+                <tr>
+                    <td>Result</td>
+                    <td>{{ ocr.result }}</td>
+                </tr>                               
+            </tbody>
+        </table>      
+    </div>
+{% endblock %}
+
+{% block scriptblock %}
+{% endblock %}
