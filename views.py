@@ -261,7 +261,7 @@ def submit_gold_parse(request,image_name=None):
                 silversub.text = rawdata.decode(charenc)
                     
             results = scorelables(
-                unicode_csv_reader(image.silverparse),
+                unicode_csv_reader(image.goldparse),
                 unicode_csv_reader(silversub.text)
             )
             silversub.score = 100*results["scores"]["fscore"]
