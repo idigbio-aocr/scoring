@@ -40,6 +40,8 @@ def get_labels_dict(csvreader):
             rheader = r
             if "aocr:regionType" not in rheader:
                 rsingleregion = True
+            for i in range(len(rheader)):
+                rheader[i] = rheader[i].strip()
             continue
         rdict = dict(zip(rheader,r))
         for f in rdict.keys():
