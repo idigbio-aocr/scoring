@@ -163,6 +163,7 @@ def submit_ocr(request,image_name=None):
             s = SequenceMatcher(None,human_tokens,ocr_tokens)
             ocrsub.result = json.dumps({
                 "matches": s.get_matching_blocks(),
+				"tokens": ocr_tokens,
                 "score": {
                     "ratio": s.ratio()
                 }
@@ -261,7 +262,7 @@ def submit_gold_parse(request,image_name=None):
                 silversub.text = rawdata.decode(charenc)
                     
             results = scorelables(
-                unicode_csv_reader(image.silverparse),
+                unicode_csv_reader(image.goldparse),
                 unicode_csv_reader(silversub.text)
             )
             silversub.score = 100*results["scores"]["fscore"]
