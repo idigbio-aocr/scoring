@@ -38,7 +38,7 @@ def get_labels_dict(csvreader):
     for r in csvreader:
         if not rheader:
             rheader = r
-            if "aocr:regionType" not in rheader:
+            if "aocr:regiontype" not in rheader:
                 rsingleregion = True
             for i in range(len(rheader)):
                 rheader[i] = rheader[i].strip()
@@ -54,10 +54,10 @@ def get_labels_dict(csvreader):
             if rsingleregion:
                 rlabels["primary"] = rdict
             else:
-                if "aocr:regionType" in rdict:
-                    lr = rdict["aocr:regionType"]
+                if "aocr:regiontype" in rdict:
+                    lr = rdict["aocr:regiontype"]
                     if lr not in rlabels:
-                        del rdict["aocr:regionType"]
+                        del rdict["aocr:regiontype"]
                         rlabels[lr] = rdict
                     else:
                         print "Error, duplicate label region"
@@ -96,7 +96,7 @@ def scorelables(rcsv,tcsv):
                 except:
                     rval = rlabels[ka[0]][ka[1]]
                     tval = tlabels[ka[0]][ka[1]]                    
-                if rlabels[ka[0]][ka[1]] == tlabels[ka[0]][ka[1]]:
+                if rval == tval:
                     tarr.append(1)
                 else:
                     tarr.append(0)
@@ -272,8 +272,8 @@ def submit_gold_parse(request,image_name=None):
                 silversub.text = rawdata.decode(charenc)
                     
             results = scorelables(
-                unicode_csv_reader(image.goldparse),
-                unicode_csv_reader(silversub.text)
+                unicode_csv_reader(image.goldparse.lower()),
+                unicode_csv_reader(silversub.text.lower())
             )
             silversub.score = 100*results["scores"]["fscore"]
             silversub.result = json.dumps(results)
