@@ -88,6 +88,14 @@ def scorelables(rcsv,tcsv):
         if ka[0] in rlabels and ka[1] in rlabels[ka[0]]:
             rarr.append(1)
             if ka[0] in tlabels and ka[1] in tlabels[ka[0]]:
+                rval = rlabels[ka[0]][ka[1]]
+                tval = tlabels[ka[0]][ka[1]]
+                try:
+                    rval = float(rval)
+                    tval = float(tval)
+                except:
+                    rval = rlabels[ka[0]][ka[1]]
+                    tval = tlabels[ka[0]][ka[1]]                    
                 if rlabels[ka[0]][ka[1]] == tlabels[ka[0]][ka[1]]:
                     tarr.append(1)
                 else:
@@ -159,8 +167,8 @@ def submit_ocr(request,image_name=None):
                 ocrsub.text = rawdata.decode(charenc)
 
                     
-            human_tokens = nltk.word_tokenize(image.humantext)
-            ocr_tokens = nltk.word_tokenize(ocrsub.text)
+            human_tokens = nltk.word_tokenize(image.humantext.lower())
+            ocr_tokens = nltk.word_tokenize(ocrsub.text.lower())
 
             s = SequenceMatcher(None,human_tokens,ocr_tokens)
             ocrsub.result = json.dumps({
@@ -215,8 +223,8 @@ def submit_silver_parse(request,image_name=None):
                 silversub.text = rawdata.decode(charenc)
             
             results = scorelables(
-                unicode_csv_reader(image.silverparse),
-                unicode_csv_reader(silversub.text)
+                unicode_csv_reader(image.silverparse.lower()),
+                unicode_csv_reader(silversub.text.lower())
             )
             silversub.score = 100*results["scores"]["fscore"]
             silversub.result = json.dumps(results)
