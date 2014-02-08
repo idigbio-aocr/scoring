@@ -46,6 +46,8 @@ def get_labels_dict(csvreader):
         rdict = dict(zip(rheader,r))
         for f in rdict.keys():
             v = rdict[f].strip()
+            # pbh: remove outside quotes if any
+            if v.startswith('"') and v.endswith('"'): v = v[1:-1]
             if len(v) == 0:
                 del rdict[f]
             else:
